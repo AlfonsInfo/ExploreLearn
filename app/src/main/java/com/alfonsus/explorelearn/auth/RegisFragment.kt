@@ -71,6 +71,7 @@ class RegisFragment : Fragment() {
         }
     }
 
+    //Saat Program di pause / sebelum di destroy. data-data di form akan tersimpan
     override fun onPause() {
         super.onPause()
 
@@ -85,6 +86,7 @@ class RegisFragment : Fragment() {
         }
     }
 
+    //Saat program diresume /dijalankan ulang Data di SharedPreferences akan dicek kembali
     override fun onResume() {
         super.onResume()
         val username = sf.getString("sf_username",null)
