@@ -1,7 +1,10 @@
 package com.alfonsus.explorelearn.auth
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.preference.PreferenceManager
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,10 +18,16 @@ import com.alfonsus.explorelearn.databinding.FragmentRegisBinding
 class RegisFragment : Fragment() {
     private var _binding: FragmentRegisBinding? = null
     private val binding get() = _binding!!
+    //Shared Preferences
+    private  lateinit var sf:SharedPreferences
+    private  lateinit var editorSf :SharedPreferences.Editor
 
     //Saat activity di inisiasi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        sf = requireActivity().getSharedPreferences("RiwayatRegis", Context.MODE_PRIVATE)
+        editorSf = sf.edit()
     }
 
     //Saat fragment di inisiasi
@@ -44,7 +53,6 @@ class RegisFragment : Fragment() {
         val inputTelp = binding.regisTelp
         var backToLogin = Intent()
 
-
         RegisBtn.setOnClickListener{
             //Bundle :
             val bundle = Bundle()
@@ -62,5 +70,36 @@ class RegisFragment : Fragment() {
 
         }
     }
+
+    override fun onPause() {
+        super.onPause()
+
+        with(editorSf)
+        {
+            putString("sf_username",binding.regisUsername.text.toString())
+            putString("sf_password",binding.regisPass.text.toString())
+            putString("sf_email",binding.regisEmail.text.toString())
+            putString("sf_tgl",binding.regisTgl.text.toString())
+            putString("sf_telp",binding.regisTelp.text.toString())
+            apply()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val username = sf.getString("sf_username",null)
+        //val password = sf.getString("sf_password",null)
+        val email = sf.getString("sf_email",null)
+        val no_telp = sf.getString("sf_telp",null)
+        val tgl =sf.getString("sf_tgl",null)
+
+        binding.regisUsername.setText(username)
+        binding.regisEmail.setText(email)
+        binding.regisTgl.setText(tgl)
+        binding.regisTelp.setText(no_telp)
+
+    }
+
+
 
 }
