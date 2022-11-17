@@ -46,15 +46,18 @@ class RegisFragment : Fragment() {
 
 
         RegisBtn.setOnClickListener{
+            //Bundle :
             val bundle = Bundle()
             bundle.putString("username" , inputUsername.getText().toString())
             bundle.putString("password" , inputPassword.getText().toString())
+
+            //Set Bundle ke fragment login
             val loginFragment = LoginFragment()
             loginFragment.setArguments(bundle)
-            requireActivity().getSupportFragmentManager().popBackStack() // dikeluarkan satu fragment kemudian di replace dengan fragment lainnya
+            //Atur agar fragmentnya sesuai ( keluarkan 1 fragment,  replace 1 lagi)
+            requireActivity().getSupportFragmentManager().popBackStack()
             requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_auth,loginFragment)
-//                    .addToBackStack(false)  //-> kalo dipake ini kembali ke regis
-                    .commit() // masalahnya sekarang double Fragment di layar yang sama
+                    .commit()
 
 
         }
