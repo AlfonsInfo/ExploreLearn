@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AuthActivity">
+    tools:context=".auth.AuthActivity">
 
     <!-- Kontainer Fragment : Atributnya ada id, layoutnya, dan konstrainnya agar aman   -->
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_auth"
+        android:name="com.alfonsus.explorelearn.auth.LoginFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"

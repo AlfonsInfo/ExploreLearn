@@ -1,8 +1,9 @@
-package com.alfonsus.explorelearn
+package com.alfonsus.explorelearn.auth
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import com.alfonsus.explorelearn.R
 import com.alfonsus.explorelearn.databinding.ActivityAuthBinding
 
 class AuthActivity : AppCompatActivity() {
@@ -16,7 +17,7 @@ class AuthActivity : AppCompatActivity() {
         binding =   ActivityAuthBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-        setFragment(LoginFragment())
+//        setFragment(LoginFragment())
 
     }
 
