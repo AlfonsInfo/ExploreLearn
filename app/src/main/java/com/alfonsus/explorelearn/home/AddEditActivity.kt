@@ -11,9 +11,11 @@ import android.widget.Toast
 import com.alfonsus.explorelearn.R
 import com.alfonsus.explorelearn.databinding.ActivityAddEditBinding
 import com.alfonsus.explorelearn.databinding.ActivityAuthBinding
+import com.alfonsus.explorelearn.home.Todo.ResponseCreateTodo
 import com.alfonsus.explorelearn.home.Todo.Todo
 import com.alfonsus.explorelearn.home.Todo.TodoApi
 import com.android.volley.AuthFailureError
+import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
@@ -55,11 +57,15 @@ class AddEditActivity : AppCompatActivity() {
     private fun createTodo()
     {
         setLoading(true)
-        val current = LocalDate.now()
-        val Todo = Todo( "binding.etTodo.text.toString()", "binding.etPesan.text.toString()", "2022-12-19", "2022-12-19",0)
-        Log.d("initodo",Todo.toString())
+        val current = LocalDate.now().toString()
+        var judul = binding.etTodo.getText().toString()
+        var pesan = binding.etPesan.getText().toString()
+        var deadline = binding.etDeadline.getText().toString()
+        val todoo = Todo( judul, pesan, "2022/05/05", "2022/05/05",0)
+        Log.d("initodo",todoo.pesan + todoo.tglDeadline + current)
         val stringRequest: StringRequest =
-            object : StringRequest(Method.POST, TodoApi.ADD_URL, Response.Listener { response ->
+            object : StringRequest(Request.Method.POST, TodoApi.ADD_URL, Response.Listener { response ->
+                Log.d("iniresponse",response)
                 val gson = Gson()
                 var todoo = gson.fromJson(response, Todo::class.java)
 
@@ -73,6 +79,7 @@ class AddEditActivity : AppCompatActivity() {
                 setLoading(false)
             }, Response.ErrorListener { error ->
                 setLoading(false)
+                Log.d("responseror",error.toString())
                 try{
                     val responseBody = String(error.networkResponse.data, StandardCharsets.UTF_8)
                     val errors = JSONObject(responseBody)
@@ -95,7 +102,7 @@ class AddEditActivity : AppCompatActivity() {
                 @Throws(AuthFailureError::class)
                 override fun getBody(): ByteArray {
                     val gson = Gson()
-                    val requestBody = gson.toJson(Todo)
+                    val requestBody = gson.toJson(todoo)
                     return requestBody.toByteArray(StandardCharsets.UTF_8)
                 }
 
