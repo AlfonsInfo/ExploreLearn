@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/beranda"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="Beranda"
+        />
+    <item
+        android:id="@+id/kelas"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_school_24"
+        android:title="Kelas"
+        />
+
+    <item
+        android:id="@+id/tugas"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_menu_book_24"
+        android:title="Tugas"
+        />
+
+    <item
+        android:id="@+id/profile"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_account_circle_24"
+        android:title="Profile"
+        />
+</menu>
+
