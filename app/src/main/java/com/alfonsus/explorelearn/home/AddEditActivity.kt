@@ -3,6 +3,7 @@ package com.alfonsus.explorelearn.home
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.LinearLayout
@@ -55,7 +56,8 @@ class AddEditActivity : AppCompatActivity() {
     {
         setLoading(true)
         val current = LocalDate.now()
-        val Todo = Todo( binding.etTodo.text.toString(), binding.etPesan.text.toString(), "2022-12-19", "2022-12-19",0)
+        val Todo = Todo( "binding.etTodo.text.toString()", "binding.etPesan.text.toString()", "2022-12-19", "2022-12-19",0)
+        Log.d("initodo",Todo.toString())
         val stringRequest: StringRequest =
             object : StringRequest(Method.POST, TodoApi.ADD_URL, Response.Listener { response ->
                 val gson = Gson()
